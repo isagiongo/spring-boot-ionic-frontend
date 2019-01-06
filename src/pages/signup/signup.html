@@ -65,13 +65,11 @@
       <ion-label floating>Bairro*</ion-label>
       <ion-input formControlName="bairro" type="text"></ion-input>
     </ion-item>
-    <p *ngIf="formGroup.controls['bairro'].dirty && formGroup.controls['bairro'].errors" margin-left>Valor Inválido</p>
 
     <ion-item>
       <ion-label floating>CEP*</ion-label>
       <ion-input formControlName="cep" type="text"></ion-input>
     </ion-item>
-    <p *ngIf="formGroup.controls['cep'].dirty && formGroup.controls['cep'].errors" margin-left>Valor Inválido</p>
 
     <ion-item>
       <ion-label floating>Telefone 1*</ion-label>
@@ -99,7 +97,7 @@
     <ion-item>
       <ion-label>Cidade*</ion-label>
       <ion-select formControlName="cidadeId">
-        <ion-option *ngFor="let cidade of cidades; first as f" [value]="cidade.id" [selected]="f">{{cidade.nome}}</ion-option>
+        <ion-option *ngFor="let cidade of cidades" [value]="cidade.id" >{{cidade.nome}}</ion-option>
       </ion-select>
     </ion-item>
 
