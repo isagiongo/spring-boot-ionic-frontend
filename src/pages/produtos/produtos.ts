@@ -1,7 +1,9 @@
+import { API_CONFIG } from './../../config/api.config';
 import { ProdutoService } from './../../services/domain/produto.service';
 import { ProdutoDTO } from './../../models/produto.dto';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
 
 @IonicPage()
 @Component({
@@ -22,7 +24,19 @@ export class ProdutosPage {
     this.produtoService.findByCategoria(categoria_id)
       .subscribe(response => {
         this.items = response['content'];
+        this.loadImageUrl();
       },
       error => {});
+    }
+
+    loadImageUrl(){
+      for (var i=0; i<this.items.length; i++){
+        let item = this.items[i];
+        this.produtoService.getSmallImageFromBucket(item.id)
+          .subscribe(response => {
+            item.imgUrl = `${API_CONFIG.bucketBaseUrl}/prod${item.id}-small.jpg`;
+          },
+          error => {});
+      }
     }
 }
