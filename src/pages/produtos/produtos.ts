@@ -3,7 +3,6 @@ import { ProdutoService } from './../../services/domain/produto.service';
 import { ProdutoDTO } from './../../models/produto.dto';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
 
 @IonicPage()
 @Component({
@@ -38,5 +37,9 @@ export class ProdutosPage {
           },
           error => {});
       }
+    }
+
+    showDetail(){
+      this.navCtrl.push('ProdutoDetailPage');
     }
 }
